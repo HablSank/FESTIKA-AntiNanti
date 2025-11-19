@@ -1,0 +1,16 @@
+[
+    {
+        "nama": "makan",
+        "deskripsi": "makan malam",
+        "deadline": "2025-12-3",
+        "energi": "1",
+        "waktu": "2"
+    },
+    {
+        "nama": "terserah",
+        "deskripsi": "",
+        "deadline": "2025-12-3",
+        "energi": "2",
+        "waktu": "2"
+    }
+]

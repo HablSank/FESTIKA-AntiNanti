@@ -179,3 +179,82 @@ def complete_task():
         
         input("Tekan Enter untuk kembali ke menu..")
 
+def get_productive_task():
+
+    tasks = load_tasks()
+
+    if not tasks:
+        print("Belum Ada Tugas Sama Sekali")
+        return
+
+    today = datetime.date.today()
+    urgent_tasks = []
+
+    for task in tasks:
+        deadline_date = datetime.datetime.strptime(task['deadline'], '%Y-%m-%d').date()
+        delta = (deadline_date - today).days
+
+        if delta == 1:
+            urgent_tasks.append(task)
+
+    if urgent_tasks: # jika ditemukan tugas urgent maka akan terdapat peringatan
+        print("\n" + "!" * 40)
+        print("PRIOTITAS: DITEMUKAN TUGAS H-1 (BESOK)! ")
+        print("!"*40)
+
+        # loop untuk menampilkan tugas urgent nya apa saja
+        for i, task in enumerate (urgent_tasks, start=1):
+            print(f"{i}. {task['nama']} (deadline: {task['deadline']})")
+
+        print("\nSARAN: Kerjakan dahulu jangan nunggu mod, ini soalnya penting!")
+        input("Tekan Enter untuk kembali ke menu...")
+        return
+
+    # Jika tidak ada urgent
+    
+    print("\n--- Mode Produktivitas ---")
+    print("Tidak ada deadline mendesak. Mari cari tugas yang cocok!")
+
+    # 1. Input Energi 
+    print("\nEnergi kamu sekarang?")
+    print("1. Rendah | 2. Netral | 3. Tinggi")
+    while True:
+        energi_input = input("Pilih (1-3): ")
+        if energi_input in ["1", "2", "3"]:
+            break
+        print("Pilih 1, 2, atau 3.")
+
+    # 2. Input Waktu 
+    print("\nWaktu kamu sekarang?")
+    print("1. Singkat | 2. Netral | 3. Lama")
+    while True:
+        waktu_input = input("Pilih (1-3): ")
+        if waktu_input in ["1", "2", "3"]:
+            break
+        print("Pilih 1, 2, atau 3.")
+
+    # 3. Mapping 
+    energi_map = {"1": "Rendah", "2": "Netral", "3": "Tinggi"}
+    waktu_map = {"1": "Singkat", "2": "Netral", "3": "Lama"}
+
+    user_energi = energi_map[energi_input] 
+    user_waktu = waktu_map[waktu_input]     
+
+    # 4. FILTERING 
+    matched_tasks = [] 
+
+    for task in tasks:
+        # Cek kecocokan
+        if task['energi'] == user_energi and task['waktu'] == user_waktu:
+            matched_tasks.append(task)
+
+    # 5. TAMPILKAN HASIL
+    if matched_tasks:
+        print(f"\n--- Rekomendasi Tugas ({user_energi} & {user_waktu}) ---")
+        for i, task in enumerate(matched_tasks, start=1):
+            print(f"{i}. {task['nama']} (Deadline: {task['deadline']})")
+    else:
+        print("\nTidak ada tugas yang cocok dengan kondisimu saat ini.")
+        print("Coba pilih mood yang lain atau kerjakan tugas acak!")
+
+    input("Tekan Enter untuk kembali...")
