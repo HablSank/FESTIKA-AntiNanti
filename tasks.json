@@ -12,5 +12,12 @@
         "deadline": "2025-12-3",
         "energi": "2",
         "waktu": "2"
+    },
+    {
+        "nama": "makan",
+        "deskripsi": "makan enak tau",
+        "deadline": "2025-12-12",
+        "energi": "1",
+        "waktu": "1"
     }
 ]

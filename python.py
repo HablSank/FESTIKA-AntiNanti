@@ -31,42 +31,6 @@ def press_enter_to_continue():
     # jeda hingga pengguna menekan enter
     input("\nTekan Enter untuk kembali ke menu...")
 
-def main_menu():
-    while True:
-        clear_screen()
-
-        # menampilkan pilihan menu
-        print("="*35)
-        print("   Selamat Datang Di AntiNanti😊   ")
-        print("="*35)
-        print("\nMenu Utama")
-        print("  1.Lihat Daftar Tugas Anda ")
-        print("  2.Input Tugas Baru ")
-        print("  3.Kerjakan Tugas (Sesuai Produktivitas) ")
-        print("  4.Selesaikan Tugas ")
-        print("  5.Keluar ")
-        
-        # input pilihan user
-        pilihan = input("Masukan Pilihan Anda (1-5): ")
-
-        if pilihan == '1':
-            print("Dalam Proses Debug")
-            view_tasks() 
-        elif pilihan == '2':
-            print("Dalam Proses Debug")
-            add_task()
-        elif pilihan == '3':
-            print("Dalam Proses Debug")
-            get_productive_task()
-        elif pilihan == '4':
-            print("Dalam Proses Debug")
-            complete_task()
-        elif pilihan == '5':
-            print("Terima kasih telah menggunakan AntiNanti!")
-            break
-        else:
-            print("Pilihan tidak valid. Masukkan angka 1-5.")
-            input("Tekan Enter untuk melanjutkan...") # Jeda  
 
 def view_tasks():
     tasks = load_tasks()
@@ -86,7 +50,7 @@ def view_tasks():
     # Input Waktu
         elif delta == 1:
             status = ("H-1")
-        elif status < 0:
+        elif delta < 0:
             status = ("Terlewat")
         else:
             status = ""
@@ -258,3 +222,43 @@ def get_productive_task():
         print("Coba pilih mood yang lain atau kerjakan tugas acak!")
 
     input("Tekan Enter untuk kembali...")
+
+def main_menu():
+    while True:
+        clear_screen()
+
+        # menampilkan pilihan menu
+        print("="*35)
+        print("   Selamat Datang Di AntiNanti😊   ")
+        print("="*35)
+        print("\nMenu Utama")
+        print("  1.Lihat Daftar Tugas Anda ")
+        print("  2.Input Tugas Baru ")
+        print("  3.Kerjakan Tugas (Sesuai Produktivitas) ")
+        print("  4.Selesaikan Tugas ")
+        print("  5.Keluar ")
+        
+        # input pilihan user
+        pilihan = input("Masukan Pilihan Anda (1-5): ")
+
+        if pilihan == '1':
+            print("Dalam Proses Debug")
+            view_tasks() 
+        elif pilihan == '2':
+            print("Dalam Proses Debug")
+            add_task()
+        elif pilihan == '3':
+            print("Dalam Proses Debug")
+            get_productive_task()
+        elif pilihan == '4':
+            print("Dalam Proses Debug")
+            complete_task()
+        elif pilihan == '5':
+            print("Terima kasih telah menggunakan AntiNanti!")
+            break
+        else:
+            print("Pilihan tidak valid. Masukkan angka 1-5.")
+            input("Tekan Enter untuk melanjutkan...") # Jeda  
+
+if __name__ == "__main__":
+    main_menu()  
