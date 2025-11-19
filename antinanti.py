@@ -31,29 +31,39 @@ def press_enter_to_continue():
     # jeda hingga pengguna menekan enter
     input("\nTekan Enter untuk kembali ke menu...")
 
-
 def view_tasks():
+    print("DEBUG: Sedang memuat tugas...") # Cek 1
     tasks = load_tasks()
+    
+    print(f"DEBUG: Jumlah tugas yang ditemukan: {len(tasks)}") # Cek 2
+    print(f"DEBUG: Isi Raw Data: {tasks}") # Cek 3
 
     if not tasks:
         print("Belum Ada Tugas")
+        input("Tekan Enter Untuk Kembali....")
         return
     
-
+    print("\nDaftar Tugas Anda")
+    
     for i, task in enumerate(tasks, start=1):
         today = datetime.date.today()
         deadline_date = datetime.datetime.strptime(task['deadline'], '%Y-%m-%d').date()
         delta = (deadline_date - today).days
 
         if delta == 0:
-            status = ("Hari Ini")
+            status = ("(Hari Ini)")
     # Input Waktu
         elif delta == 1:
-            status = ("H-1")
+            status = ("(H-1)")
         elif delta < 0:
-            status = ("Terlewat")
+            status = ("(Terlewat)")
         else:
             status = ""
+        
+        print(f"{i}. {task['nama']} {status}")
+    
+    print("\n")
+    input("Tekan Enter Untuk Kembali ke Menu....")
 
 def add_task():
     # input nama
@@ -95,17 +105,17 @@ def add_task():
 
     
     energi_map = {"1": "Rendah", "2": "Netral", "3": "Tinggi"}
-    Time_map =  {"1": "Singkat", "2": "Netral", "3": "Lama"}
+    waktu_map =  {"1": "Singkat", "2": "Netral", "3": "Lama"}
 
     energi_string = energi_map[energi]
-    waktu_string = energi_map[waktu]
+    waktu_string = waktu_map[waktu]
 
     new_task = {
         "nama": nama,
         "deskripsi": deskripsi,
         "deadline": deadline,
-        "energi": energi,
-        "waktu": waktu
+        "energi": energi_string,
+        "waktu": waktu_string
     }
 
 
@@ -122,7 +132,7 @@ def complete_task():
             print("Tidak Ada Tugas untuk diselesaikan")
             return
         
-        finish_number = input("Masukan nomor tugas yang telah diselesaikan (contoh: 1)")
+        finish_number = input("Masukan nomor tugas yang telah diselesaikan (contoh: 1) :")
 
         try:
             finish_number = int(finish_number)
@@ -170,7 +180,7 @@ def get_productive_task():
         for i, task in enumerate (urgent_tasks, start=1):
             print(f"{i}. {task['nama']} (deadline: {task['deadline']})")
 
-        print("\nSARAN: Kerjakan dahulu jangan nunggu mod, ini soalnya penting!")
+        print("\nSARAN: Kerjakan dahulu jangan nunggu mood, karena ini sudah MEPETT!")
         input("Tekan Enter untuk kembali ke menu...")
         return
 

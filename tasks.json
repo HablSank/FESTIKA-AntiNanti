@@ -1,23 +1,30 @@
 [
     {
-        "nama": "makan",
-        "deskripsi": "makan malam",
-        "deadline": "2025-12-3",
-        "energi": "1",
-        "waktu": "2"
-    },
-    {
-        "nama": "terserah",
+        "nama": "nugas",
         "deskripsi": "",
-        "deadline": "2025-12-3",
-        "energi": "2",
-        "waktu": "2"
-    },
-    {
-        "nama": "makan",
-        "deskripsi": "makan enak tau",
-        "deadline": "2025-12-12",
+        "deadline": "2025-11-20",
         "energi": "1",
         "waktu": "1"
+    },
+    {
+        "nama": "alap alap",
+        "deskripsi": "",
+        "deadline": "2025-11-20",
+        "energi": "3",
+        "waktu": "3"
+    },
+    {
+        "nama": "kelereng",
+        "deskripsi": "",
+        "deadline": "2025-11-20",
+        "energi": "Rendah",
+        "waktu": "Singkat"
+    },
+    {
+        "nama": "pjbl",
+        "deskripsi": "",
+        "deadline": "2025-11-21",
+        "energi": "Netral",
+        "waktu": "Netral"
     }
 ]
