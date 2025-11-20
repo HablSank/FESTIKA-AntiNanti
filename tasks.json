@@ -1,19 +1,5 @@
 [
     {
-        "nama": "nugas",
-        "deskripsi": "",
-        "deadline": "2025-11-20",
-        "energi": "1",
-        "waktu": "1"
-    },
-    {
-        "nama": "alap alap",
-        "deskripsi": "",
-        "deadline": "2025-11-20",
-        "energi": "3",
-        "waktu": "3"
-    },
-    {
         "nama": "kelereng",
         "deskripsi": "",
         "deadline": "2025-11-20",
@@ -26,5 +12,12 @@
         "deadline": "2025-11-21",
         "energi": "Netral",
         "waktu": "Netral"
+    },
+    {
+        "nama": "Matematika",
+        "deskripsi": "Halaman 29",
+        "deadline": "2025-11-27",
+        "energi": "Tinggi",
+        "waktu": "Lama"
     }
 ]

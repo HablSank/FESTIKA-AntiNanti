@@ -31,7 +31,7 @@ def press_enter_to_continue():
     # jeda hingga pengguna menekan enter
     input("\nTekan Enter untuk kembali ke menu...")
 
-def view_tasks():
+def view_tasks(enter_continue=False):
     print("DEBUG: Sedang memuat tugas...") # Cek 1
     tasks = load_tasks()
     
@@ -50,7 +50,9 @@ def view_tasks():
         deadline_date = datetime.datetime.strptime(task['deadline'], '%Y-%m-%d').date()
         delta = (deadline_date - today).days
 
-        if delta == 0:
+        if delta > 1:
+            status = f"(H-{delta})"
+        elif delta == 0:
             status = ("(Hari Ini)")
     # Input Waktu
         elif delta == 1:
@@ -61,9 +63,12 @@ def view_tasks():
             status = ""
         
         print(f"{i}. {task['nama']} {status}")
-    
+        print(f"   Deskripsi: {task['deskripsi']}")
     print("\n")
-    input("Tekan Enter Untuk Kembali ke Menu....")
+    if not enter_continue:
+        press_enter_to_continue()
+    else:
+        return
 
 def add_task():
     # input nama
@@ -71,7 +76,7 @@ def add_task():
     # Input Deskripsi
     deskripsi = input("Masukan Deskripsi (Opsional, tekan Enter jika tidak ada ): ")
     while True:
-        deadline = input("Masukan Deadline Anda(format YYY-MM-DD): ")
+        deadline = input("Masukan Deadline Anda(format YYYY-MM-DD): ")
         try:
             datetime.datetime.strptime(deadline, '%Y-%m-%d')
         except ValueError:
@@ -124,8 +129,8 @@ def add_task():
     save_tasks(tasks)
 
 def complete_task():
-        
-        view_tasks()
+         
+        view_tasks(enter_continue=True)
         tasks = load_tasks()
 
         if not tasks:
