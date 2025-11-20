@@ -52,7 +52,6 @@ def view_tasks(enter_continue=False):
             status = f"(H-{delta})"
         elif delta == 0:
             status = ("(Hari Ini)")
-    # Input Waktu
         elif delta == 1:
             status = ("(H-1)")
         elif delta < 0:
@@ -172,7 +171,7 @@ def get_productive_task():
         deadline_date = datetime.datetime.strptime(task['deadline'], '%Y-%m-%d').date()
         delta = (deadline_date - today).days
 
-        if delta <= 1:
+        if delta == 1 or delta == 0:
             urgent_tasks.append(task)
 
     if urgent_tasks: # jika ditemukan tugas urgent maka akan terdapat peringatan
@@ -221,8 +220,10 @@ def get_productive_task():
     matched_tasks = [] 
 
     for task in tasks:
+        deadline_date = datetime.datetime.strptime(task['deadline'], '%Y-%m-%d').date()
+        delta = (deadline_date - today).days
         # Cek kecocokan
-        if task['energi'] == user_energi and task['waktu'] == user_waktu:
+        if task ['energi'] == user_energi and task['waktu'] == user_waktu and delta >= 0:
             matched_tasks.append(task)
 
     # 5. TAMPILKAN HASIL

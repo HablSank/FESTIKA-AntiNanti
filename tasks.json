@@ -1,16 +1,16 @@
 [
     {
-        "nama": "Matematika",
-        "deskripsi": "Halaman 29",
-        "deadline": "2025-11-27",
-        "energi": "Tinggi",
-        "waktu": "Lama"
-    },
-    {
         "nama": "PJOK",
         "deskripsi": "Lari 3 km",
         "deadline": "2025-12-01",
         "energi": "Netral",
         "waktu": "Netral"
+    },
+    {
+        "nama": "B Inggris",
+        "deskripsi": "Waduh",
+        "deadline": "2025-11-18",
+        "energi": "Rendah",
+        "waktu": "Singkat"
     }
 ]
