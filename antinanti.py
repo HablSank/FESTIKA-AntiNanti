@@ -32,18 +32,16 @@ def press_enter_to_continue():
     input("\nTekan Enter untuk kembali ke menu...")
 
 def view_tasks(enter_continue=False):
-    print("DEBUG: Sedang memuat tugas...") # Cek 1
     tasks = load_tasks()
-    
-    print(f"DEBUG: Jumlah tugas yang ditemukan: {len(tasks)}") # Cek 2
-    print(f"DEBUG: Isi Raw Data: {tasks}") # Cek 3
-
     if not tasks:
         print("Belum Ada Tugas")
         input("Tekan Enter Untuk Kembali....")
         return
     
-    print("\nDaftar Tugas Anda")
+    print("\n")
+    print("="*25)
+    print(" 🧾 Daftar Tugas Anda 🧾")
+    print("="*25)
     
     for i, task in enumerate(tasks, start=1):
         today = datetime.date.today()
@@ -64,13 +62,14 @@ def view_tasks(enter_continue=False):
         
         print(f"{i}. {task['nama']} {status}")
         print(f"   Deskripsi: {task['deskripsi']}")
-    print("\n")
+        print("-"*25)
     if not enter_continue:
         press_enter_to_continue()
     else:
         return
 
 def add_task():
+    print("\n--- ➕ Tambah Tugas Baru ➕ ---")
     # input nama
     nama = input("Masukan Nama Tugas: ")
     # Input Deskripsi
@@ -173,13 +172,12 @@ def get_productive_task():
         deadline_date = datetime.datetime.strptime(task['deadline'], '%Y-%m-%d').date()
         delta = (deadline_date - today).days
 
-        if delta == 1:
+        if delta <= 1:
             urgent_tasks.append(task)
 
     if urgent_tasks: # jika ditemukan tugas urgent maka akan terdapat peringatan
-        print("\n" + "!" * 40)
-        print("PRIOTITAS: DITEMUKAN TUGAS H-1 (BESOK)! ")
-        print("!"*40)
+        print("\n")
+        print("‼️  PRIOTITAS: DITEMUKAN TUGAS H-1 (BESOK)‼️")
 
         # loop untuk menampilkan tugas urgent nya apa saja
         for i, task in enumerate (urgent_tasks, start=1):
@@ -191,11 +189,11 @@ def get_productive_task():
 
     # Jika tidak ada urgent
     
-    print("\n--- Mode Produktivitas ---")
+    print("\n--- ⚡ Mode Produktivitas ⚡ ---")
     print("Tidak ada deadline mendesak. Mari cari tugas yang cocok!")
 
     # 1. Input Energi 
-    print("\nEnergi kamu sekarang?")
+    print("\n🔋 Energi kamu sekarang?")
     print("1. Rendah | 2. Netral | 3. Tinggi")
     while True:
         energi_input = input("Pilih (1-3): ")
@@ -204,7 +202,7 @@ def get_productive_task():
         print("Pilih 1, 2, atau 3.")
 
     # 2. Input Waktu 
-    print("\nWaktu kamu sekarang?")
+    print("\n⏳ Waktu kamu sekarang?")
     print("1. Singkat | 2. Netral | 3. Lama")
     while True:
         waktu_input = input("Pilih (1-3): ")
@@ -247,26 +245,22 @@ def main_menu():
         print("   Selamat Datang Di AntiNanti😊   ")
         print("="*35)
         print("\nMenu Utama")
-        print("  1.Lihat Daftar Tugas Anda ")
-        print("  2.Input Tugas Baru ")
-        print("  3.Kerjakan Tugas (Sesuai Produktivitas) ")
-        print("  4.Selesaikan Tugas ")
-        print("  5.Keluar ")
+        print("1.🧾 Lihat Daftar Tugas Anda ")
+        print("2.➕ Input Tugas Baru ")
+        print("3.📝 Kerjakan Tugas (Sesuai Produktivitas) ")
+        print("4.✔️  Selesaikan Tugas ")
+        print("5.🚪 Keluar ")
         
         # input pilihan user
         pilihan = input("Masukan Pilihan Anda (1-5): ")
 
         if pilihan == '1':
-            print("Dalam Proses Debug")
             view_tasks() 
         elif pilihan == '2':
-            print("Dalam Proses Debug")
             add_task()
         elif pilihan == '3':
-            print("Dalam Proses Debug")
             get_productive_task()
         elif pilihan == '4':
-            print("Dalam Proses Debug")
             complete_task()
         elif pilihan == '5':
             print("Terima kasih telah menggunakan AntiNanti!")
